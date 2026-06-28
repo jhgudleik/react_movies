@@ -1,0 +1,12 @@
+.card {
+flex-basis: 300px;
+margin: 8px;
+box-shadow: 0px 0px 4px 4px #ccc;
+}
+.card img {
+    height: 400px;
+}
+.card p {
+display: flex;
+justify-content: space-between;
+}

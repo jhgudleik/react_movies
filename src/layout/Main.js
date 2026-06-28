@@ -1,12 +1,26 @@
 import './Main.css';
+import React from 'react';
+import MovieList from '../components/MovieList.js';
+import Preloader from '../components/Preloader.js';
+class Main extends React.Component 
+{
+    state = {
+        movies: []
+    };
+    componentDidMount() {
+        fetch('https://www.omdbapi.com/?apikey=2b2aca6b&s=matrix')
+            .then(response => response.json())
+            .then(data => this.setState({ movies: data.Search }));
+    }   
 
-function Main() {
-  return (
-    <div className="main">
-      <h1>Welcome to My App</h1>
-      <p>This is the main content area.</p>
-    </div>
-  );
+  render() {
+    const { movies } = this.state;
+    return (
+      <div className="main">
+        {movies.length ? <MovieList movies={movies} /> : <Preloader />}
+      </div>
+    );
+  }
 }
 
 export default Main;
